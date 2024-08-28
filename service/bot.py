@@ -14,7 +14,6 @@ bot = telebot.TeleBot(token)
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     print(f"User with {message.chat.id} is started to use bot")
-    print(message.chat)
     user = get_users(message.chat.id)
     if user is None:
         print(f'Create new user {message.chat.id}, {message.chat.first_name}')
