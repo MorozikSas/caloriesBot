@@ -11,7 +11,6 @@ def connect_to_db():
         port=config['PostgreSQL']['port'],
         database=config['PostgreSQL']['database'],
         user=config['PostgreSQL']['user'],
-        # password=config['PostgreSQL']['password']
     )
     return conn
 
