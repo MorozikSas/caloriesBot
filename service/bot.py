@@ -11,7 +11,6 @@ config.read('config.ini')
 token = config['Telegram']['token']
 bot = telebot.TeleBot(token)
 
-
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     print(f"User with {message.chat.id} is started to use bot")
@@ -34,19 +33,19 @@ def default_buttons(message):
 @bot.message_handler()
 def handle_message(message):
     print(message.text, "sfdgh")
-    handler = get_handler(message.text)
+    handler_name = get_handler(message.text)
+    handler = globals().get(handler_name)
     if handler is not None:
         handler(message)
     else:
-        bot.send_message(message.chat.id,"Выбери из предложенного, не пиши сам")
+        bot.send_message(message.chat.id, "Выбери из предложенного, не пиши сам")
         default_buttons(message)
 
 def takeTime(message):
-    bot.send_message(message.chat.id, "Вы выбрали время")
+    bot.send_message(message.chat.id, "Вы выбрали время для запроса параметров")
 
 def getData(message):
-    bot.send_message(message.chat.id, "Вы получаете отчетность")
-
+    bot.send_message(message.chat.id, "Вы получаете отчетность по заданному периоду")
 
 @bot.message_handler(commands=['ai'])
 def handle_ai(message):
