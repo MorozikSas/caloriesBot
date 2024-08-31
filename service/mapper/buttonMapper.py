@@ -1,11 +1,7 @@
-import configparser
-
-config = configparser.ConfigParser()
-config.read('config.ini')
+from service.config import Buttons
 
 def get_handler(text):
-    buttons = config['Buttons']
-    for key, value in buttons.items():
-        if text == value:
+    for key in Buttons.__dict__:
+        if Buttons.__dict__[key] == text:
             return key
     return None

@@ -1,12 +1,8 @@
 import requests
-import json
-import configparser
+from service.config import DeepinfraConfig
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-
-token = config['deepinfra']['api_key']
-endpoint = config['deepinfra']['endpoint']
+token = DeepinfraConfig.KEY
+endpoint = DeepinfraConfig.ENDPOINT
 def createRequest(message):
     headers = {
         'Content-Type': 'application/json',
